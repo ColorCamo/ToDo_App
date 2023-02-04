@@ -35,6 +35,18 @@ const reducer = (state = initialState, action) => {
           },
         ],
       };
+    case actionTypes.REMOVE_TODO:
+      const shortnedList = state.notes.filter(
+      	(item) => item.id !== action.payload
+      );
+
+      return { ...state, notes: shortnedList };
+    case actionTypes.TODO_DONE:
+      const taskDone = state.notes.map((item) => {
+      	? { ...item, done: !item.done }
+      	: { ...item };
+      });
+      return { ...state, notes: taskDone };
 
     default:
       return state;
